@@ -13,7 +13,7 @@
         #title {
             font-size: 48px;
             margin-bottom: 20px;
-            color: #c41a1a;
+            color: #000000;
             font-weight: bold;
             margin-bottom: 30px;
         }
@@ -67,19 +67,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 15px;
-            font-size: 20px;
+            margin-top: 25px;
+            font-size: 25px;
         }
         
         .pool-label {
             font-weight: bold;
             margin-right: 10px;
+            font-size: 25px;
         }
 
         .poolCheck {
-            width: 20px;
-            height: 20px;
-            margin-right: 20px
+            width: 25px;
+            height: 25px;
+            margin-left: 30px
         }
 
         .toggle-all {
@@ -103,6 +104,10 @@
             background-color: #2e6b2c;
             border: 2px solid #2a632c;
         }
+
+        #pools-section {
+            margin-top: 60px;
+        }
     </style>
 </head>
 
@@ -117,40 +122,42 @@
     <button id="option2" class="option" onclick="selectOption(2)">C</button> 
     <button id="option3" class="option" onclick="selectOption(3)">D</button> 
 
-    <div class="pool-container"> <span class = "pool-label">Left pool:</span>
-        <form id="left-pool">
-            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="1" checked> 1</label>
-            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="2" checked> 2</label>
-            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="3" checked> 3</label>
-            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="4" checked> 4</label>
-            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="5" checked> 5</label>
-            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="6" checked> 6</label>
-            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="7" checked> 7</label>
-            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="8" checked> 8</label>
-            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="9" checked> 9</label>
-            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="10" checked> 10</label>
-            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="11" checked> 11</label>
-            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="12" checked> 12</label>
-        </form>
-        <button class="toggle-all" onclick="togglePool('left')">toggle all</button>
-    </div>
+    <div id="pools-section">
+        <div class="pool-container"> <span class = "pool-label">Left pool:</span>
+            <form id="left-pool">
+                <label><input class="poolCheck" type="checkbox" name="Left pool number" value="1" checked> 1</label>
+                <label><input class="poolCheck" type="checkbox" name="Left pool number" value="2" checked> 2</label>
+                <label><input class="poolCheck" type="checkbox" name="Left pool number" value="3" checked> 3</label>
+                <label><input class="poolCheck" type="checkbox" name="Left pool number" value="4" checked> 4</label>
+                <label><input class="poolCheck" type="checkbox" name="Left pool number" value="5" checked> 5</label>
+                <label><input class="poolCheck" type="checkbox" name="Left pool number" value="6" checked> 6</label>
+                <label><input class="poolCheck" type="checkbox" name="Left pool number" value="7" checked> 7</label>
+                <label><input class="poolCheck" type="checkbox" name="Left pool number" value="8" checked> 8</label>
+                <label><input class="poolCheck" type="checkbox" name="Left pool number" value="9" checked> 9</label>
+                <label><input class="poolCheck" type="checkbox" name="Left pool number" value="10" checked> 10</label>
+                <label><input class="poolCheck" type="checkbox" name="Left pool number" value="11" checked> 11</label>
+                <label><input class="poolCheck" type="checkbox" name="Left pool number" value="12" checked> 12</label>
+            </form>
+            <button class="toggle-all" onclick="togglePool('left')">toggle all</button>
+        </div>
 
-    <div class="pool-container"> <span class = "pool-label">Right pool:</span>
-    <form id="right-pool">
-        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="1" checked> 1</label>
-        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="2" checked> 2</label>
-        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="3" checked> 3</label>
-        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="4" checked> 4</label>
-        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="5" checked> 5</label>
-        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="6" checked> 6</label>
-        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="7" checked> 7</label>
-        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="8" checked> 8</label>
-        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="9" checked> 9</label>
-        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="10" checked> 10</label>
-        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="11" checked> 11</label>
-        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="12" checked> 12</label>
-    </form>
-    <button class="toggle-all" onclick="togglePool('right')">toggle all</button>
+        <div class="pool-container"> <span class = "pool-label">Right pool:</span>
+        <form id="right-pool">
+            <label><input class="poolCheck" type="checkbox" name="Right pool number" value="1" checked> 1</label>
+            <label><input class="poolCheck" type="checkbox" name="Right pool number" value="2" checked> 2</label>
+            <label><input class="poolCheck" type="checkbox" name="Right pool number" value="3" checked> 3</label>
+            <label><input class="poolCheck" type="checkbox" name="Right pool number" value="4" checked> 4</label>
+            <label><input class="poolCheck" type="checkbox" name="Right pool number" value="5" checked> 5</label>
+            <label><input class="poolCheck" type="checkbox" name="Right pool number" value="6" checked> 6</label>
+            <label><input class="poolCheck" type="checkbox" name="Right pool number" value="7" checked> 7</label>
+            <label><input class="poolCheck" type="checkbox" name="Right pool number" value="8" checked> 8</label>
+            <label><input class="poolCheck" type="checkbox" name="Right pool number" value="9" checked> 9</label>
+            <label><input class="poolCheck" type="checkbox" name="Right pool number" value="10" checked> 10</label>
+            <label><input class="poolCheck" type="checkbox" name="Right pool number" value="11" checked> 11</label>
+            <label><input class="poolCheck" type="checkbox" name="Right pool number" value="12" checked> 12</label>
+        </form>
+        <button class="toggle-all" onclick="togglePool('right')">toggle all</button>
+        </div>
     </div>
 <script>
 let left;
