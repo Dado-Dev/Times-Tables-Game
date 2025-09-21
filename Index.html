@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Times Tables Game</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #ffffff;
+        }
+        #title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #000000;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        #question {
+            font-size: 84px;
+            margin-top: 20px;
+            color: #000000;
+        }
+
+        .option {
+            background-color: #4CAF50;
+            border: 2px solid #3b893d;
+            width: 340px;
+            height: 185px;
+            font-size: 50px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            margin-right: 15px;
+            margin-left: 15px;
+            color: white;
+        }
+
+        .option:hover {
+            background-color: #3b893d;
+            border: 2px solid #2a632c;
+        }
+
+        .option:active {
+            background-color: #2e6b2c;
+            border: 2px solid #2a632c;
+        }
+
+        #score {
+            font-size: 32px;
+            color: #000000;
+            font-style: bold;
+            margin-top: 20px;
+            margin-bottom: 5px;
+        }
+
+        #outcome {
+            font-size: 42px;
+            color: #000000;
+            font-style: bold;
+        }
+
+        .pool-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            font-size: 20px;
+        }
+        
+        .pool-label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .poolCheck {
+            width: 20px;
+            height: 20px;
+            margin-right: 20px
+        }
+
+        .toggle-all {
+            background-color: #4CAF50;
+            border: 2px solid #3b893d;
+            padding: 5px 10px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+            margin-left: 20px;
+            color: white;
+        }
+
+        .toggle-all:hover {
+            background-color: #3b893d;
+            border: 2px solid #2a632c;
+        }
+
+        .toggle-all:active {
+            background-color: #2e6b2c;
+            border: 2px solid #2a632c;
+        }
+    </style>
+</head>
+
+<body onload="newQuestion()">
+    <div id="title">Times Tables Game</div>
+    <div id="question">Question</div>
+    <div id="score">0/0, 0%</div>
+    <div id="outcome"></div>
+    <button id="option0" class="option" onclick="selectOption(0)">A</button> 
+    <button id="option1" class="option" onclick="selectOption(1)">B</button> 
+    <br>
+    <button id="option2" class="option" onclick="selectOption(2)">C</button> 
+    <button id="option3" class="option" onclick="selectOption(3)">D</button> 
+
+    <div class="pool-container"> <span class = "pool-label">Left pool:</span>
+        <form id="left-pool">
+            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="1" checked> 1</label>
+            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="2" checked> 2</label>
+            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="3" checked> 3</label>
+            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="4" checked> 4</label>
+            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="5" checked> 5</label>
+            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="6" checked> 6</label>
+            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="7" checked> 7</label>
+            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="8" checked> 8</label>
+            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="9" checked> 9</label>
+            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="10" checked> 10</label>
+            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="11" checked> 11</label>
+            <label><input class="poolCheck" type="checkbox" name="Left pool number" value="12" checked> 12</label>
+        </form>
+        <button class="toggle-all" onclick="togglePool('left')">toggle all</button>
+    </div>
+
+    <div class="pool-container"> <span class = "pool-label">Right pool:</span>
+    <form id="right-pool">
+        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="1" checked> 1</label>
+        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="2" checked> 2</label>
+        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="3" checked> 3</label>
+        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="4" checked> 4</label>
+        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="5" checked> 5</label>
+        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="6" checked> 6</label>
+        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="7" checked> 7</label>
+        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="8" checked> 8</label>
+        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="9" checked> 9</label>
+        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="10" checked> 10</label>
+        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="11" checked> 11</label>
+        <label><input class="poolCheck" type="checkbox" name="Right pool number" value="12" checked> 12</label>
+    </form>
+    <button class="toggle-all" onclick="togglePool('right')">toggle all</button>
+    </div>
+<script>
+let left;
+let right;
+let answer;
+let options;
+let leftPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+let rightPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+let score = 0;
+let questionCount = 0;
+
+let leftToggle = true;
+let rightToggle = true;
+
+// Pool functions
+
+function populatePools() {
+    leftPool = getSelectedCheckboxes("Left pool number");
+    rightPool = getSelectedCheckboxes("Right pool number");
+}
+
+function togglePool(pool) {
+    let boxes = document.querySelectorAll(`#${pool}-pool input[type="checkbox"]`);
+    if (pool == "right") {
+        rightToggle = !rightToggle
+    } else {
+        leftToggle = !leftToggle
+    }
+
+    boxes.forEach(function(box, i) {
+        box.checked = pool == "right" ? rightToggle : leftToggle;
+    });
+}
+
+// Question Functions
+
+function newQuestion() {
+    populatePools();
+    generateQuestion();
+    options = generateOptions();
+    applyOptions(options);
+}
+
+function generateQuestion() {
+    left = leftPool[randomInt(0, leftPool.length-1)];
+    right = rightPool[randomInt(0, rightPool.length-1)];
+    question = `${left} x ${right}`;
+    answer = left * right;
+    document.getElementById("question").innerHTML = question;
+}
+
+// Option functions
+
+function generateOptions() {
+    let results = [];
+    for (let i = -1; i <= 1; i++) {
+        for (let j = -1; j <= 1; j++) {
+            if (i == 0 && j == 0) {
+                continue;
+            //} else if (!(leftPool.includes(left + i) || rightPool.includes(right + j))) {
+                //continue;
+            } else {
+                let result = (left + i) * (right + j);
+                results.push(result);
+            }
+        }
+    }
+    options = shuffle(results);
+    options = options.slice(0, 3);
+    options.push(left * right);
+    options = shuffle(options);
+    return options;
+}
+
+function applyOptions(options) {
+    for (let i = 0; i < options.length; i++) {
+        document.getElementById(`option${i}`).innerHTML = options[i];
+    }
+}
+
+function selectOption(i) {
+    outcome = checkOption(i);
+    updateOutcome(outcome);
+    updateScore();
+    newQuestion();
+}
+
+function checkOption(i) {
+    let val = document.getElementById(`option${i}`).innerHTML;
+    let num = parseInt(val);
+
+    return (num == answer);
+}
+
+// Miscellanious functions
+
+function updateScore() {
+    questionCount += 1;
+    if (outcome) {score += 1};
+    let percent = Math.ceil((score / questionCount) * 100)
+    let message = `${score}/${questionCount}, ${percent}%`;
+    document.getElementById("score").innerHTML = (message);
+}
+
+
+function updateOutcome(outcome) {
+    let outElement = document.getElementById("outcome");
+    if (outcome) {
+        outElement.innerHTML = "Correct!"
+        outElement.style.color = "#26d179"
+    } else {
+        outElement.innerHTML = `Incorrect! ${question} is ${answer}`
+        outElement.style.color = "#ff0000"
+    }
+}
+
+// Helper functions
+
+function getSelectedCheckboxes(name) {
+    const checked = (document.querySelectorAll(`input[name="${name}"]:checked`));
+    // Turn NodeList into array of values
+    let values = Array.from(checked).map(cb => cb.value);
+    let numericVals = [];
+    for (let i = 0; i < values.length; i++) {
+        numericVals.push(parseInt(values[i]))
+    }
+    return numericVals;
+}
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    // pick a random index from 0 to i
+    const j = Math.floor(Math.random() * (i + 1));
+    
+    // swap elements at positions i and j
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+</script>
+</body>
+</html>
